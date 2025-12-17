@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>졸라맨 똥피하기 (SUBERUNKER Style)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui-layer">
+            <div id="start-screen">
+                <h1 class="title">똥피하기</h1>
+                <p class="subtitle">SUBERUNKER STYLE</p>
+                <button id="start-btn" class="menu-btn">게임 시작</button>
+            </div>
+
+            <div id="difficulty-screen" class="hidden">
+                <h2>난이도 선택</h2>
+                <div class="btn-container">
+                    <button class="diff-btn" data-diff="easy">Easy</button>
+                    <button class="diff-btn" data-diff="normal">Normal</button>
+                    <button class="diff-btn" data-diff="hard">Hard</button>
+                    <button class="diff-btn" data-diff="hell">HELL</button>
+                </div>
+            </div>
+
+            <div id="score-board" class="hidden">시간: <span id="time-display">0.00</span>초</div>
+            <div id="game-over-screen" class="hidden">
+                <h1>YOU DIED</h1>
+                <p>버틴 시간: <span id="final-score">0.00</span>초</p>
+                <button id="restart-btn" class="menu-btn">처음으로</button>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #222;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+    /* 화면 왜곡(찌그러짐) 방지를 위한 강력한 비율 고정 */
+    /* 가로:세로 = 3:4 (600:800) */
+
+    /* 1. 기본적으로 95% 뷰포트를 넘지 않도록 제한 */
+    /* 2. 높이가 제한되면 너비도 같이 줄어들고, 너비가 제한되면 높이도 같이 줄어듦 */
+    width: min(600px, 95vw, 95vh * 0.75);
+    height: min(800px, 95vh, 95vw * 1.3333);
+
+    /* 3. 정확한 비율 강제 */
+    aspect-ratio: 3 / 4;
+}
+
+canvas {
+    background-color: #e0e0e0;
+    /* 연한 회색 (종이 느낌) */
+    display: block;
+    width: 100%;
+    /* 부모 컨테이너에 맞춤 */
+    height: 100%;
+    border-radius: 4px;
+}
+
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* 클릭 이벤트를 캔버스로 통과시킴 */
+}
+
+#score-board {
+    position: absolute;
+    top: 5%;
+    /* 고정 픽셀 대신 비율 사용 */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    /* 맨 위에 표시 */
+    white-space: nowrap;
+    /* 줄바꿈 방지 */
+}
+
+#start-screen,
+#difficulty-screen,
+#game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    /* 배경 조금 더 어둡게 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 타이틀 스타일 */
+.title {
+    font-size: 60px;
+    color: #ffd700;
+    text-shadow: 4px 4px 0px #8B4513;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 24px;
+    color: #aaa;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+}
+
+/* 버튼 공통 스타일 */
+button {
+    font-family: 'Arial', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.menu-btn {
+    padding: 20px 50px;
+    font-size: 28px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 0 #2E7D32;
+}
+
+.menu-btn:hover {
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 #2E7D32;
+    background-color: #45a049;
+}
+
+.menu-btn:active {
+    transform: translateY(5px);
+    box-shadow: none;
+}
+
+/* 난이도 버튼 컨테이너 */
+.btn-container {
+    display: flex;
+    gap: 20px;
+}
+
+.diff-btn {
+    padding: 15px 30px;
+    font-size: 24px;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.diff-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+.diff-btn:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+/* 난이도별 색상 */
+.diff-btn[data-diff="easy"] {
+    background-color: #87CEEB;
+}
+
+.diff-btn[data-diff="normal"] {
+    background-color: #4CAF50;
+}
+
+.diff-btn[data-diff="hard"] {
+    background-color: #FF9800;
+}
+
+.diff-btn[data-diff="hell"] {
+    background-color: #f44336;
+}
+
+h1 {
+    font-size: 48px;
+    color: #ff4444;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px #000;
+}
+
+p {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #45a049;
+}
+
+button:active {
+    transform: scale(0.95);
+}
